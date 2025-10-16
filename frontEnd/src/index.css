@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  background-color: #1c1c1c; /* or any gray shade like #808080, #f5f5f5, etc */
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 10s linear infinite;
+}
+.animate-scroll-right {
+  animation: scroll-right 20s linear infinite;
+}
