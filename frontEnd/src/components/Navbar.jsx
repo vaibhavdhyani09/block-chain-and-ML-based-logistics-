@@ -8,7 +8,7 @@ const Navbar = () => {
       top: 0,
       width: '100%',
       backgroundColor: 'transparent',
-      backdropFilter: 'blur(10px)',
+      backdropFilter: 'blur(2px)',
       padding: '1rem 2rem',
       display: 'flex',
       justifyContent: 'space-between',

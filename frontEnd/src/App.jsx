@@ -7,6 +7,7 @@ import InfiniteStrip from './components/Cards';
 import InfinityBanners from './components/Slider';
 import GlassCard from './components/Glass';
 import FlipCards from './components/FlipCards';
+import ShipmentBlockchain from './components/ShipmentBlockchain';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function App() {
       <InfiniteStrip/>
       <InfinityBanners/>
       {/* <GlassCard/> */}
+      <ShipmentBlockchain/>
       <FlipCards/>
       <TruckGame/>
       <Footer/>

@@ -15,28 +15,66 @@ const TruckGame = () => {
   const [displayScore, setDisplayScore] = useState(0);
   const [displayGameOver, setDisplayGameOver] = useState(false);
 
+  // Function to draw a rolling wheel
+  const drawWheel = (ctx, x, y, radius, rotation) => {
+    ctx.save();
+    
+    // Move to wheel center
+    ctx.translate(x + radius, y + radius);
+    ctx.rotate(rotation);
+    
+    // Draw outer circle (wheel)
+    ctx.fillStyle = '#fff';
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Draw inner circle (hub)
+    ctx.fillStyle = '#666';
+    ctx.beginPath();
+    ctx.arc(0, 0, radius * 0.3, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Draw spokes
+    ctx.strokeStyle = '#666';
+    ctx.lineWidth = 2;
+    for (let i = 0; i < 8; i++) {
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(radius * 0.9 * Math.cos(i * Math.PI / 4), radius * 0.9 * Math.sin(i * Math.PI / 4));
+      ctx.stroke();
+    }
+    
+    ctx.restore();
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
-      let animationId;
-      
-      const state = gameStateRef.current;
-      
-      // Load high score from localStorage
-      const savedHighScore = localStorage.getItem('truckGameHighScore');
-      state.highScore = savedHighScore ? parseInt(savedHighScore) : 0;
-
+    const ctx = canvas.getContext('2d');
+    let animationId;
     
-    // Initialize truck (smaller size)
+    const state = gameStateRef.current;
+    
+    // Load high score from localStorage
+    const savedHighScore = localStorage.getItem('truckGameHighScore');
+    state.highScore = savedHighScore ? parseInt(savedHighScore) : 0;
+    
+    // Initialize wheel - adjusted so bottom touches ground
+    const wheelRadius = 20;
+    const groundY = canvas.height - 5; // Ground line position
+    
     state.truck = {
       x: 50,
-      y: canvas.height - 50,
-      width: 40,
-      height: 40,
+      y: groundY - (wheelRadius * 2), // Position so bottom of circle touches ground
+      width: wheelRadius * 2,
+      height: wheelRadius * 2,
+      radius: wheelRadius,
+      rotation: 0,
       velocityY: 0,
       jumping: false,
       gravity: 0.6,
-      jumpPower: -12
+      jumpPower: -12,
+      groundY: groundY - (wheelRadius * 2) // Store ground position for wheel
     };
     
     // Jump function
@@ -67,7 +105,7 @@ const TruckGame = () => {
       }
     };
     
-    // Create obstacle (smaller size)
+    // Create obstacle
     const createObstacle = () => {
       state.obstacles.push({
         x: canvas.width,
@@ -80,16 +118,17 @@ const TruckGame = () => {
     
     // Reset game
     const resetGame = () => {
-      state.truck.y = canvas.height - 50;
+      state.truck.y = state.truck.groundY;
       state.truck.velocityY = 0;
       state.truck.jumping = false;
+      state.truck.rotation = 0;
       state.obstacles.length = 0;
       state.obstacleTimer = 0;
       state.score = 0;
       state.gameOver = false;
       setDisplayScore(0);
       setDisplayGameOver(false);
-      gameLoop(); // Restart the game loop
+      gameLoop();
     };
     
     // Collision detection
@@ -104,7 +143,6 @@ const TruckGame = () => {
     
     // Game loop
     const gameLoop = () => {
-      // Stop loop if game over
       if (state.gameOver) {
         cancelAnimationFrame(animationIdRef.current);
         return;
@@ -120,20 +158,22 @@ const TruckGame = () => {
       ctx.lineTo(canvas.width, canvas.height - 5);
       ctx.stroke();
       
-      // Update truck physics
+      // Update wheel physics
       state.truck.velocityY += state.truck.gravity;
       state.truck.y += state.truck.velocityY;
       
-      // Ground collision
-      if (state.truck.y >= canvas.height - 50) {
-        state.truck.y = canvas.height - 50;
+      // Ground collision - wheel touches ground
+      if (state.truck.y >= state.truck.groundY) {
+        state.truck.y = state.truck.groundY;
         state.truck.velocityY = 0;
         state.truck.jumping = false;
       }
       
-      // Draw truck
-      ctx.fillStyle = '#fff';
-      ctx.fillRect(state.truck.x, state.truck.y, state.truck.width, state.truck.height);
+      // Rotate wheel continuously (rolling effect)
+      state.truck.rotation += 0.1;
+      
+      // Draw rolling wheel
+      drawWheel(ctx, state.truck.x, state.truck.y, state.truck.radius, state.truck.rotation);
       
       // Create obstacles
       state.obstacleTimer++;
@@ -157,9 +197,9 @@ const TruckGame = () => {
           setDisplayGameOver(true);
 
           if (state.score > state.highScore) {
-         state.highScore = state.score;
-         localStorage.setItem('truckGameHighScore', state.score);
-    }
+            state.highScore = state.score;
+            localStorage.setItem('truckGameHighScore', state.score);
+          }
           
           // Draw game over text
           ctx.fillStyle = '#fff';
@@ -201,31 +241,30 @@ const TruckGame = () => {
   }, []);
   
   return (
-  <div style={{ 
-    textAlign: 'center', 
-    padding: '2rem',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '20px'  // Add top margin here
-  }}>
-    <canvas 
-      ref={canvasRef} 
-      width={800} 
-      height={400}
-      style={{ 
-        borderBottom: '4px solid white',
-        backgroundColor: 'transparent',
-        cursor: 'pointer'
-      }}
-    />
-    <p style={{ color: 'white', marginTop: '1rem', fontSize: '14px' }}>
-      Press SPACE or Click to Jump
-    </p>
-  </div>
-);
-
+    <div style={{ 
+      textAlign: 'center', 
+      padding: '2rem',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: '20px'
+    }}>
+      <canvas 
+        ref={canvasRef} 
+        width={800} 
+        height={400}
+        style={{ 
+          borderBottom: '4px solid white',
+          backgroundColor: 'transparent',
+          cursor: 'pointer'
+        }}
+      />
+      <p style={{ color: 'white', marginTop: '1rem', fontSize: '14px' }}>
+        Press SPACE or Click to Jump
+      </p>
+    </div>
+  );
 };
 
 export default TruckGame;
