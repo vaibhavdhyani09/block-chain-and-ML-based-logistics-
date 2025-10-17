@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import Navbar from './components/Navbar'
 import TrackingInput from './components/TrackingInput'
 import TruckGame from './components/TruckGame'
@@ -8,21 +9,22 @@ import InfinityBanners from './components/Slider';
 import GlassCard from './components/Glass';
 import FlipCards from './components/FlipCards';
 import ShipmentBlockchain from './components/ShipmentBlockchain';
+import WarehouseUpload from './components/WarehouseUploads';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <TrackingInput />
-      <InfiniteStrip/>
-      <InfinityBanners/>
-      {/* <GlassCard/> */}
+      <InfiniteStrip />
+      <InfinityBanners />
+      <FlipCards />
+      {/* <WarehouseUpload /> */}
       <ShipmentBlockchain/>
-      <FlipCards/>
-      <TruckGame/>
-      <Footer/>
+      <TruckGame />
+      <Footer />
     </>
   )
 }

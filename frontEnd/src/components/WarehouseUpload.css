@@ -1,0 +1,164 @@
+.warehouse-section {
+  padding: 60px 20px;
+  margin: 20px;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  min-height: 400px;
+}
+
+.warehouse-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.warehouse-header {
+  text-align: center;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.warehouse-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.warehouse-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Upload Trigger Card */
+.warehouse-upload-trigger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-card {
+  background: #3a3737;
+  padding: 50px 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.upload-card:hover {
+  transform: translateY(-5px);
+}
+
+.upload-icon {
+  color: #d7dd13;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.upload-card h3 {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.upload-card p {
+  color: white;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.upload-blockchain-btn {
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  color: white;
+  background-color: #ced80e;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px white;
+}
+
+.upload-blockchain-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.upload-blockchain-btn span {
+  font-size: 1.3rem;
+}
+
+/* Blockchain Container */
+.blockchain-upload-container {
+  background: #3a3737;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.close-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #ff3838;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .warehouse-section {
+    padding: 40px 15px;
+  }
+
+  .warehouse-header h2 {
+    font-size: 2rem;
+  }
+
+  .upload-card {
+    padding: 40px 30px;
+  }
+
+  .upload-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .upload-blockchain-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+
+  .blockchain-upload-container {
+    padding: 20px;
+  }
+}
