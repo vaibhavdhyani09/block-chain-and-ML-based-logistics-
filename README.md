@@ -1,10 +1,10 @@
-# 🚚 Blockchain & ML-Based Logistics System
+# Blockchain & ML-Based Logistics System
 
 > A decentralized logistics platform that combines **Ethereum smart contracts** for shipment transparency with **Machine Learning** for delivery time & demand prediction — ensuring trust, efficiency, and real-time visibility across the supply chain.
 
 ---
 
-## 📌 Overview
+## Overview
 
 Traditional logistics systems suffer from opacity, data tampering, and poor demand forecasting. This project tackles all three by fusing two cutting-edge technologies:
 
@@ -14,17 +14,17 @@ Traditional logistics systems suffer from opacity, data tampering, and poor dema
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔗 **On-chain Shipment Tracking** — Log and verify shipment status events on the Ethereum blockchain
-- 📦 **End-to-End Transparency** — Stakeholders (sender, carrier, receiver) can independently verify shipment history
-- 🤖 **ML Demand & Delivery Prediction** — Predict estimated delivery times and demand using trained ML models
-- 🎨 **Animated UI** — GSAP-powered frontend with smooth transitions and interactive components
-- 🔒 **Tamper-Proof Records** — Immutable on-chain logs prevent data manipulation
+-  **On-chain Shipment Tracking** — Log and verify shipment status events on the Ethereum blockchain
+-  **End-to-End Transparency** — Stakeholders (sender, carrier, receiver) can independently verify shipment history
+-  **ML Demand & Delivery Prediction** — Predict estimated delivery times and demand using trained ML models
+-  **Animated UI** — GSAP-powered frontend with smooth transitions and interactive components
+-  **Tamper-Proof Records** — Immutable on-chain logs prevent data manipulation
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -37,7 +37,7 @@ Traditional logistics systems suffer from opacity, data tampering, and poor dema
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 block-chain-and-ML-based-logistics-/
@@ -59,7 +59,7 @@ block-chain-and-ML-based-logistics-/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -119,7 +119,7 @@ All state changes emit events that are permanently recorded on the Ethereum bloc
 
 ---
 
-## 🤖 ML Prediction Module
+## ML Prediction Module
 
 The ML module is trained on historical logistics data to predict:
 
@@ -146,7 +146,7 @@ print(f"Estimated delivery: {result} days")
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 - [ ] IPFS integration for document storage (invoices, receipts)
 - [ ] Multi-carrier support with role-based access control
@@ -156,7 +156,7 @@ print(f"Estimated delivery: {result} days")
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please open an issue first to discuss what you'd like to change.
 
@@ -168,13 +168,7 @@ Contributions are welcome! Please open an issue first to discuss what you'd like
 
 ---
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-## 👤 Author
+## Author
 
 **Vaibhav Dhyani**
 - GitHub: [@vaibhavdhyani09](https://github.com/vaibhavdhyani09)
