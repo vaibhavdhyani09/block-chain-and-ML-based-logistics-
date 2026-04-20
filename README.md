@@ -136,14 +136,6 @@ print(f"Estimated delivery: {result} days")
 
 ---
 
-## 📸 Screenshots
-
-> _Add screenshots of your UI here_
-
-| Dashboard | Shipment Tracker | Prediction Panel |
-|---|---|---|
-| ![dashboard]() | ![tracker]() | ![prediction]() |
-
 ---
 
 ## Future Improvements
